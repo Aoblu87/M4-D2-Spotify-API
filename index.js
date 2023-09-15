@@ -1,54 +1,65 @@
-window.onload = function () {
+// creo funzione per estrapolare la stringa dalla barra di ricerca e inserirla nel url della fetch
+
+const buttonSearch = document.querySelector('#button-search')
+const inputSearch = document.querySelector('#searchField')
+
+buttonSearch.addEventListener('click', event => {
+
+    const inputText = inputSearch.event.target.innerText
+
+    console.log(inputText)
 
 
-    function displayMusicAlbum(result) {
-
-        const songArray = result.data
-        const imgTags = document.querySelectorAll('.cover')
-        const titles=document.querySelectorAll('.albumTitle')
-
-        for (let i = 0; i < songArray.length; i++) {
-
-            
-            // titolo artista
-            const artist = songArray[i].artist
-            document.querySelector('#artistName').innerText = artist.name
-
-            // Immagini cover
-            const album = songArray[i].album
-            for (const img of imgTags) {
-                img.src = album.cover_medium
-            }
-
-            // testo card overlay
-            const titleAlbum= album.title
-            for (const title of titles) {
-                ti
-            }
+})
 
 
 
-        }
-
-        // console.log(songArray)
-        // const artist = track.artist
-        // const album= track.album
-        // console.log(artist.name)
-
-        // const artistName= document.querySelectorAll('.artistName').innerText= artist.name
 
 
-        // document.querySelector('#cover').src=album.cover_big
+// --------------------------------------------------------
+function displayMusicAlbum(result) {
+
+    const songArray = result.data
+
+    const titles = document.querySelectorAll('.albumTitle')
+    const card = document.querySelector('.songs')
+
+    for (let i = 0; i < songArray.length; i++) {
+      
+
+        const newHTML  = card.innerHTML = `<h2 id="artistName">${songArray[i].artist.name}</h2>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3" id="eminemSection">
+        <div class="card bg-transparent text-white border border-0">
+        <img src="${songArray[i].album.cover_big}" class="cover card-img" alt="album cover">
+        <div class="card-img-overlay">
+        <h5 class="albumTitle" class="card-title"></h5>
+        <p class="card-text"></p>
+        <p class="card-text"></p>
+        </div>
+        </div>`
+        newHTML.appendChild(card)
+
+
+     
+
+
+        
+
 
 
     }
 
-    function getRandomAlbum() {
-        fetch("https://striveschool-api.herokuapp.com/api/deezer/search?q=eminem")
-            .then(response => response.json())
-            .then(displayMusicAlbum)
-    }
-
-    getRandomAlbum()
+    
 
 }
+
+function getRandomAlbum() {
+    fetch("https://striveschool-api.herokuapp.com/api/deezer/search?q=eminem")
+        .then(response => response.json())
+        .then(displayMusicAlbum)
+}
+
+getRandomAlbum()
+
+
+
