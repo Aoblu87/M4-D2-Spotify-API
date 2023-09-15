@@ -3,14 +3,15 @@
 const buttonSearch = document.querySelector('#button-search')
 const inputSearch = document.querySelector('#searchField')
 
-buttonSearch.addEventListener('click', event => {
+function readInputValue() {
 
-    const inputText = inputSearch.event.target.innerText
+    let value = inputSearch.value
 
-    console.log(inputText)
+    let url = "https://striveschool-api.herokuapp.com/api/deezer/search?q="
 
+    let fetch = url.concat('',value)
 
-})
+}
 
 
 
@@ -21,17 +22,17 @@ function displayMusicAlbum(result) {
 
     const songArray = result.data
 
-    const titles = document.querySelectorAll('.albumTitle')
     const divContainer = document.querySelector('.songs')
+    const cardContainer = document.querySelector('#cardContainer')
 
     for (let i = 0; i < songArray.length; i++) {
 
-        const arstistName = document.querySelectorAll('songs')
-        arstistName
+        const arstistName = document.querySelector('#artistName')
+        arstistName.innerText = songArray[i].artist.name
+
+        cardContainer.innerHTML += `
         
-        const newHTML = divContainer.innerHTML = `<h2 id="artistName">${songArray[i].artist.name}</h2>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3" id="eminemSection">
-        <div class="card bg-transparent text-white border border-0">
+        <div class="card bg-transparent text-white border border-0 mb-4">
         <img src="${songArray[i].album.cover_big}" class="cover card-img" alt="album cover">
         <div class="card-img-overlay">
         <h5 class="albumTitle" class="card-title"></h5>
@@ -40,26 +41,26 @@ function displayMusicAlbum(result) {
         </div>
         </div>`
 
-        card.appendChild(newHTML[i])
-
-
-
-
-
 
     }
 
-
-
 }
 
-function getRandomAlbum() {
-    fetch("https://striveschool-api.herokuapp.com/api/deezer/search?q=eminem")
+
+
+
+
+
+
+
+function getRandomAlbum(readInputValue) {
+
+    fetch(readInputValue)
         .then(response => response.json())
         .then(displayMusicAlbum)
 }
 
-getRandomAlbum()
+// getRandomAlbum()
 
 
 
