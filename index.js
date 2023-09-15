@@ -22,12 +22,14 @@ function displayMusicAlbum(result) {
     const songArray = result.data
 
     const titles = document.querySelectorAll('.albumTitle')
-    const card = document.querySelector('.songs')
+    const divContainer = document.querySelector('.songs')
 
     for (let i = 0; i < songArray.length; i++) {
-      
 
-        const newHTML  = card.innerHTML = `<h2 id="artistName">${songArray[i].artist.name}</h2>
+        const arstistName = document.querySelectorAll('songs')
+        arstistName
+        
+        const newHTML = divContainer.innerHTML = `<h2 id="artistName">${songArray[i].artist.name}</h2>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3" id="eminemSection">
         <div class="card bg-transparent text-white border border-0">
         <img src="${songArray[i].album.cover_big}" class="cover card-img" alt="album cover">
@@ -37,19 +39,17 @@ function displayMusicAlbum(result) {
         <p class="card-text"></p>
         </div>
         </div>`
-        newHTML.appendChild(card)
+
+        card.appendChild(newHTML[i])
 
 
-     
 
-
-        
 
 
 
     }
 
-    
+
 
 }
 
