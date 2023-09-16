@@ -4,6 +4,7 @@ const inputSearch = document.querySelector('#searchField')
 const cardContainer = document.querySelector('#cardContainer')
 const arstistName = document.querySelector('#artistName')
 const buttonSearch = document.querySelector('#btnSearch')
+const modalList = document.querySelector('#albumTitle')
 
 
 // creo funzione per estrapolare la stringa dalla barra di ricerca e inserirla nel url della fetch
@@ -15,7 +16,7 @@ function readInputValue() {
     let url = "https://striveschool-api.herokuapp.com/api/deezer/search?q="
 
     query = url.concat('', input)
-    
+
     return query
 }
 
@@ -46,18 +47,17 @@ function displayMusicAlbum(result) {
 
 
         // creo DOM per il modale
-        const modalList = document.querySelector('#albumTitle')
-
         modalList.innerHTML += `<li class="list-group-item">${songArray[i].album.title}</li>`
     }
 }
 
 
 
+
 // ------------funzione di chiamata API
 function getRandomAlbum(getUrl) {
-    
-    
+
+
     fetch(getUrl())
 
         .then(response => response.json())
@@ -70,30 +70,33 @@ function getRandomAlbum(getUrl) {
 
 
 // Execute a function when the user presses a key on the keyboard
-inputSearch.addEventListener("keypress", function(event) {
+inputSearch.addEventListener("keypress", function (event) {
 
-    
-  // If the user presses the "Enter" key on the keyboard
-  if (event.key === "Enter") {
-    // Cancel the default action, if needed
-    event.preventDefault();
-    // Trigger the button element with a click
-    buttonSearch.click();
-  }
+
+    // If the user presses the "Enter" key on the keyboard
+    if (event.key === "Enter") {
+        // Cancel the default action, if needed
+        event.preventDefault();
+        // Trigger the button element with a click
+        buttonSearch.click();
+    }
 })
 
 //------------------- Rimuovo elementi DOM della precedente ricerca al click del bottone GO
 buttonSearch.addEventListener("click", removeElement)
-buttonSearch.addEventListener('keypress',removeElement)
+buttonSearch.addEventListener('keypress', removeElement)
 
-function removeElement(){
-// rimuovo titolo sezione
-arstistName.innerText = ''
+function removeElement() {
 
-// rimuovo precedenti risultati
-while (cardContainer.hasChildNodes()) {
-    cardContainer.removeChild(cardContainer.firstChild)
-  }
+    // rimuovo lista album da MYlist
+    modalList.innerHTML = ''
+    // rimuovo titolo sezione
+    arstistName.innerText = ''
+
+    // rimuovo precedenti risultati
+    while (cardContainer.hasChildNodes()) {
+        cardContainer.removeChild(cardContainer.firstChild)
+    }
 
 }
 
