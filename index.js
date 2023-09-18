@@ -11,27 +11,35 @@ const mainPage = document.querySelector('.mainPage')
 
 //-------------------- funzione di chiamata per la schermata home
 function homeResult() {
-
+    
     const arrayArtist = ['thecranberries', 'theoffsprings', 'sum41']
-    let query
+    let query=[]
     for (let i = 0; i < arrayArtist.length; i++) {
         const artist = arrayArtist[i];
 
         let url = "https://striveschool-api.herokuapp.com/api/deezer/search?q="
-        query = url.concat('', artist)
+        query += url.concat('', artist)
 
-        fetch("https://striveschool-api.herokuapp.com/api/deezer/search?q=eminem")
-        console.log(query)
-        .then(response => response.json())
-        .then(displayHomeCard)
-       
-
+ 
+        
     }
-
+    return query
 
 }
-homeResult()
-// window.onload = getRandomAlbum(homeResult)
+
+function getAlbumHome(getUrl) {
+
+
+    fetch(getUrl())
+
+        .then(response => response.json())
+        .then(displayHomeCard)
+}
+
+
+
+
+getAlbumHome(homeResult)
 
 
 //-------------------- MOstro card della home 
@@ -146,7 +154,7 @@ function displayHomeCard(result) {
 
     //------------------- Rimuovo elementi DOM della precedente ricerca al click del bottone GO
     buttonSearch.addEventListener("click", removeElement)
-    buttonSearch.addEventListener('keypress', removeElement)
+    inputSearch.addEventListener('keypress', removeElement)
 
     function removeElement() {
 
