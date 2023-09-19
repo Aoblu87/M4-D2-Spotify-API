@@ -10,67 +10,67 @@ const mainPage = document.querySelector('.mainPage')
 
 
 //-------------------- funzione di chiamata per la schermata home
-function homeResult() {
+// function homeResult() {
     
-    const arrayArtist = ['thecranberries', 'theoffsprings', 'sum41']
-    let query=[]
-    for (let i = 0; i < arrayArtist.length; i++) {
-        const artist = arrayArtist[i];
+//     const arrayArtist = ['thecranberries', 'theoffsprings', 'sum41']
+//     let query=[]
+//     for (let i = 0; i < arrayArtist.length; i++) {
+//         const artist = arrayArtist[i];
 
-        let url = "https://striveschool-api.herokuapp.com/api/deezer/search?q="
-        query += url.concat('', artist)
+//         let url = "https://striveschool-api.herokuapp.com/api/deezer/search?q="
+//         query += url.concat('', artist)
 
  
         
-    }
-    return query
+//     }
+//     return query
 
-}
+// }
 
-function getAlbumHome(getUrl) {
-
-
-    fetch(getUrl())
-
-        .then(response => response.json())
-        .then(displayHomeCard)
-}
+// function getAlbumHome(getUrl) {
 
 
+//     fetch(getUrl())
+
+//         .then(response => response.json())
+//         .then(displayHomeCard)
+// }
 
 
-getAlbumHome(homeResult)
 
 
-//-------------------- MOstro card della home 
-function displayHomeCard(result) {
-    const songArray = result.data
+// getAlbumHome(homeResult)
 
 
-    for (let i = 0; i < 7; i++) {
+// //-------------------- MOstro card della home 
+// function displayHomeCard(result) {
+//     const songArray = result.data
 
-        // arstistName.innerText = inputSearch.value.toUpperCase()
 
-        mainPage.innerHTML += ` <div class="row">
-                                    <div class="col-10">
-                                        <div class="songs">
-                                            <h2 id="artistName">${songArray[i].artist.name.toUpperCase()}</h2>
-                                            <div id="cardContainer" class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3">
-                                                <div class="card d-flex align-items-center bg-transparent text-white border border-0 mb-4">
-                                                    <img src="${songArray[i].album.cover_xl}" class="cover card-img" alt="album cover">
-                                                    <div class="card-img-overlay d-flex justify-content-center align-items-center">
-                                                        <h5 class="album-title text-center">Album: <br> <span class="text-center fs-5"> ${songArray[i].album.title} </span></h5>
-                                                        <p class="card-text"></p>
-                                                        <p class="card-text"></p>
-                                                    </div>
-                                                </div>
-                                            </div>
+//     for (let i = 0; i < 7; i++) {
 
-                                        </div>
-                                    </div>
-                                </div>`
-    }
-}
+//         // arstistName.innerText = inputSearch.value.toUpperCase()
+
+//         mainPage.innerHTML += ` <div class="row">
+//                                     <div class="col-10">
+//                                         <div class="songs">
+//                                             <h2 id="artistName">${songArray[i].artist.name.toUpperCase()}</h2>
+//                                             <div id="cardContainer" class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3">
+//                                                 <div class="card d-flex align-items-center bg-transparent text-white border border-0 mb-4">
+//                                                     <img src="${songArray[i].album.cover_xl}" class="cover card-img" alt="album cover">
+//                                                     <div class="card-img-overlay d-flex justify-content-center align-items-center">
+//                                                         <h5 class="album-title text-center">Album: <br> <span class="text-center fs-5"> ${songArray[i].album.title} </span></h5>
+//                                                         <p class="card-text"></p>
+//                                                         <p class="card-text"></p>
+//                                                     </div>
+//                                                 </div>
+//                                             </div>
+
+//                                         </div>
+//                                     </div>
+//                                 </div>`
+//     }
+// }
 
 
 
@@ -101,7 +101,8 @@ function displayHomeCard(result) {
         const songArray = result.data
 
         // const divContainer = document.querySelector('.songs')
-
+        cardContainer.innerHTML=''
+        arstistName.innerHTML=''
         for (let i = 0; i < songArray.length; i++) {
 
             arstistName.innerText = inputSearch.value.toUpperCase()
@@ -125,16 +126,16 @@ function displayHomeCard(result) {
 
 
     // ------------funzione di chiamata API che prende il paramentro dall'input della ricerca
-    function getRandomAlbum(getUrl) {
+    function getAlbum(url) {
 
 
-        fetch(getUrl())
+        fetch(url)
 
             .then(response => response.json())
             .then(displayMusicAlbum)
     }
 
-
+    getAlbum('https://striveschool-api.herokuapp.com/api/deezer/search?q=japan')
 
     //---------------- Abilito enter per catturare input ricerca
 
@@ -153,20 +154,20 @@ function displayHomeCard(result) {
     })
 
     //------------------- Rimuovo elementi DOM della precedente ricerca al click del bottone GO
-    buttonSearch.addEventListener("click", removeElement)
-    inputSearch.addEventListener('keypress', removeElement)
+    // buttonSearch.addEventListener("click", removeElement)
+    // inputSearch.addEventListener('keypress', removeElement)
 
-    function removeElement() {
+    // function removeElement() {
 
-        // rimuovo lista album da MYlist
-        modalList.innerHTML = ''
-        // rimuovo titolo sezione
-        arstistName.innerText = ''
+    //     // rimuovo lista album da MYlist
+    //     modalList.innerHTML = ''
+    //     // rimuovo titolo sezione
+    //     arstistName.innerText = ''
 
-        // rimuovo precedenti risultati
-        while (cardContainer.hasChildNodes()) {
-            cardContainer.removeChild(cardContainer.firstChild)
-        }
+    //     // rimuovo precedenti risultati
+    //     while (cardContainer.hasChildNodes()) {
+    //         cardContainer.removeChild(cardContainer.firstChild)
+    //     }
 
-    }
+    // }
 
