@@ -19,4 +19,5 @@ These technologies combined enable the creation of a dynamic and engaging user i
 - **Search Functionality** - Implements a real-time search feature that allows users to find their favorite songs and artists by typing characters, enhancing the user's navigation and exploration within the app.
 - **Responsive Design** - Ensures that the application looks great and functions well on a wide range of devices, from mobile phones to desktop computers.
 
-![127 0 0 1_5501_index html](https://github.com/Aoblu87/M4-D2-Spotify-API/assets/126720391/fe49a798-247f-47df-a3a9-53ff0346ff16)
+
+![127 0 0 1_5501_index html (1)](https://github.com/Aoblu87/M4-D2-Spotify-API/assets/126720391/61c46f1a-ebfc-4c02-9d88-f58f98ff01bb)
